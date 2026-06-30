@@ -55,26 +55,62 @@ def extract_threat_info(pulses):
 
     threats = []
 
-    for pulse in pulses[:5]:  # limit to 5 for now to save API credits
+    for pulse in pulses[:5]:
         name = pulse.get('name', 'Unknown')
         description = pulse.get('description', 'No description available')
         created = pulse.get('created', 'Unknown date')
         tags = pulse.get('tags', [])
-        indicator_count = len(pulse.get('indicators', []))
+        raw_indicators = pulse.get('indicators', [])
+
+        # Extract and categorize IOCs by type
+        iocs = {
+            "ip_addresses": [],
+            "domains": [],
+            "urls": [],
+            "file_hashes": [],
+            "other": []
+        }
+
+        for indicator in raw_indicators:
+            ind_type = indicator.get('type', '')
+            ind_value = indicator.get('indicator', '')
+
+            if not ind_value:
+                continue
+
+            if ind_type in ['IPv4', 'IPv6']:
+                iocs['ip_addresses'].append(ind_value)
+            elif ind_type == 'domain' or ind_type == 'hostname':
+                iocs['domains'].append(ind_value)
+            elif ind_type == 'URL':
+                iocs['urls'].append(ind_value)
+            elif ind_type in ['FileHash-MD5', 'FileHash-SHA1', 'FileHash-SHA256']:
+                iocs['file_hashes'].append(f"{ind_type}: {ind_value}")
+            else:
+                iocs['other'].append(f"{ind_type}: {ind_value}")
+
+        # Limit each category to 5 examples to keep reports readable
+        for key in iocs:
+            iocs[key] = iocs[key][:5]
+
+        total_iocs = sum(len(v) for v in iocs.values())
 
         threats.append({
             "name": name,
             "description": description[:300],
             "created": created,
             "tags": tags,
-            "indicator_count": indicator_count
+            "indicator_count": len(raw_indicators),
+            "iocs": iocs,
+            "total_iocs_extracted": total_iocs
         })
 
         print(f"📌 {name}")
-        print(f"   Indicators: {indicator_count} | Tags: {', '.join(tags[:5])}\n")
+        print(f"   Total Indicators: {len(raw_indicators)} | Tags: {', '.join(tags[:5])}")
+        print(f"   IOCs extracted: {iocs['ip_addresses'][:2]} IPs, "
+              f"{iocs['domains'][:2]} domains, {len(iocs['file_hashes'])} hashes\n")
 
     return threats
-
 # ============================================
 # MITRE ATT&CK MAPPING
 # ============================================
