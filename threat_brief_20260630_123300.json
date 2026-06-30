@@ -1,0 +1,105 @@
+{
+    "report_date": "20260630_123300",
+    "tool": "AI Threat Intelligence Platform v1.0",
+    "total_threats": 5,
+    "threats": [
+        {
+            "name": "Rapid growth and a new ransomware variant",
+            "description": "The Gentlemen ransomware-as-a-service group emerged as a top-10 threat actor in the first half of 2026. The group exploits vulnerabilities in internet-facing devices like VPNs and firewalls, potentially collaborating with initial access brokers. They employ comprehensive reconnaissance using tools l",
+            "created": "2026-06-29T11:01:00.897000",
+            "tags": [
+                "vulnerable drivers",
+                "sharkloader",
+                "zichatbot",
+                "coolclient",
+                "gpo deployment",
+                "ransomware-as-a-service",
+                "powercloud",
+                "appleseed",
+                "mgbot",
+                "encryption tactics",
+                "byovd",
+                "reversesocks",
+                "cobalt strike",
+                "network reconnaissance",
+                "custom backdoor",
+                "lateral movement"
+            ],
+            "indicator_count": 48,
+            "ai_summary": "**Threat Summary: Gentlemen Ransomware-as-a-Service Group**\n\nThe Gentlemen ransomware-as-a-service group has rapidly emerged as a top-10 threat actor in 2026, leveraging vulnerabilities in internet-facing devices such as VPNs and firewalls, and deploying a sophisticated toolset including Cobalt Strike, SharkLoader, custom backdoors, and BYOVD techniques to establish persistent access and move laterally across victim environments. The group likely collaborates with initial access brokers and utilizes GPO deployment for ransomware distribution, supported by 48 tracked indicators of compromise. Security teams should prioritize patching per"
+        },
+        {
+            "name": "New customs charges for online orders outside the EU",
+            "description": "With the introduction of charges/taxes on certain items posted from outside the EU, threat actors appear to be leveraging the situation to send fraudulent SMS and email messages impersonating postal services in an attempt to harvest payment details and personal information. The campaign is already b",
+            "created": "2026-06-29T15:40:51.081000",
+            "tags": [
+                "customs",
+                "taxes",
+                "smishing",
+                "eu",
+                "email",
+                "phishing",
+                "impersonating",
+                "postal services",
+                "payment",
+                "scam",
+                "fraud"
+            ],
+            "indicator_count": 3,
+            "ai_summary": "**Threat Summary: Fraudulent Customs Charge Phishing Campaign**\n\nThreat actors are exploiting the recent introduction of EU customs charges on international online orders by conducting smishing and phishing campaigns that impersonate legitimate postal services to deceive recipients into submitting payment details and personal information. This campaign targets general consumers across the EU who are expecting parcels from international retailers, making the lure highly plausible and broadly effective given the widespread awareness of the new customs regulations. Security teams should be alert to this threat as it poses a significant credential and financial data harvesting risk to employees and customers alike, and organizations with EU-based users should consider issuing awareness communications to reduce susceptibility to these socially engineered"
+        },
+        {
+            "name": "Phishing Campaign PasasteSinTAG - New domain rotation identified associated with the campaign impersonating the PasasteSinTAG portal",
+            "description": "A phishing campaign targeting Chile continues to evolve with significant infrastructure expansion. Security researchers identified 99 new domains impersonating the legitimate PasasteSinTAG portal, with 22 domains confirmed active and 77 registered but not yet activated. The active domains utilize va",
+            "created": "2026-06-29T06:35:54.082000",
+            "tags": [
+                "brand impersonation",
+                "credential harvesting",
+                "pasastesintag",
+                "infrastructure",
+                "domain rotation",
+                "phishing",
+                "chile"
+            ],
+            "indicator_count": 108,
+            "ai_summary": "**Phishing Campaign: PasasteSinTAG Domain Rotation**\n\nA sophisticated phishing campaign targeting Chilean users has significantly expanded its infrastructure, with researchers identifying 99 new domains impersonating the legitimate PasasteSinTAG portal, of which 22 are currently active and 77 remain staged for future deployment. The campaign employs credential harvesting techniques through brand impersonation, suggesting a deliberate and scalable operation designed to rotate domains and evade takedown efforts. Security teams should prioritize monitoring and blocking the 108 associated indicators, as the pre-registered dormant domains indicate the threat actors are preparing for continued campaign waves, posing an ongoing risk to users and organizations"
+        },
+        {
+            "name": "Understanding Langflow CVE-2026-55255, and why higher CVSS vulnerabilities aren't always the most exploited",
+            "description": "On June 25, 2026, the first active exploitation of CVE-2026-55255, a critical CVSS 9.9 Langflow vulnerability, was documented. Langflow is an open-source framework for building AI agents and RAG pipelines. A single operator exploited both CVE-2026-55255 (cross-tenant IDOR) and CVE-2026-33017 (unauth",
+            "created": "2026-06-26T21:31:36.752000",
+            "tags": [
+                "multi-tenant",
+                "cve-2026-33017",
+                "ai pipeline exploitation",
+                "cve-2026-55255",
+                "botnet deployment",
+                "langflow",
+                "rce",
+                "idor",
+                "credential theft",
+                "cvss paradox"
+            ],
+            "indicator_count": 4,
+            "ai_summary": "**Langflow CVE-2026-55255 Active Exploitation Alert**\n\nA critical CVSS 9.9 vulnerability in Langflow, an open-source AI agent and RAG pipeline framework, is being actively exploited in the wild since June 25, 2026, chaining a cross-tenant IDOR flaw (CVE-2026-55255) with an unauthenticated RCE vulnerability (CVE-2026-33017) to achieve full compromise. The attack targets multi-tenant Langflow deployments, enabling threat actors to pivot across tenant boundaries, steal credentials, and deploy botnet infrastructure. Security teams running Langflow instances \u2014 particularly"
+        },
+        {
+            "name": "Miasma Mini Shai-Hulud Hits ImmobiliareLabs npm Packages",
+            "description": "A fresh wave of the Miasma Mini Shai-Hulud supply chain campaign compromised legitimate npm packages under the @immobiliarelabs scope on June 26, 2026. The attack targeted Backstage plugins used for GitLab integration and LDAP authentication, affecting 22 package versions across multiple releases. T",
+            "created": "2026-06-27T01:57:13.229000",
+            "tags": [
+                "backstage plugins",
+                "ci/cd compromise",
+                "supply chain attack",
+                "github actions",
+                "miasma mini shai-hulud",
+                "npm compromise",
+                "credential theft",
+                "immobiliarelabs",
+                "developer infrastructure"
+            ],
+            "indicator_count": 45,
+            "ai_summary": "**Miasma Mini Shai-Hulud Supply Chain Attack on ImmobiliareLabs npm Packages**\n\nA supply chain attack dubbed Miasma Mini Shai-Hulud compromised 22 versions of legitimate npm packages under the @immobiliarelabs scope on June 26, 2026, targeting Backstage plugins used for GitLab integration and LDAP authentication. The campaign likely leveraged compromised GitHub Actions workflows to inject malicious code into developer tooling used across CI/CD pipelines, with credential theft as a primary objective. Security teams should prioritize auditing any environments consuming @immobiliarelabs packages, reviewing pipeline integrity, and rotating credentials"
+        }
+    ]
+}
