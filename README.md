@@ -25,7 +25,10 @@ that highlight what the threat is, who it targets, and why it matters.
 - **JSON report output** — structured, timestamped threat briefs
 - **MITRE ATT&CK mapping** — Claude AI maps each threat to relevant 
   MITRE ATT&CK techniques, the industry standard framework for 
-  classifying attacker behavior
+  classifying attacker behavior.
+- **IOC extraction** — automatically extracts and categorizes 
+  Indicators of Compromise (IP addresses, domains, file hashes) 
+  from each threat for direct use in detection tooling
 
 ---
 
@@ -108,7 +111,6 @@ Sign up at console.anthropic.com
 - **MITRE ATT&CK mapping** — Claude AI maps each threat to the relevant 
   MITRE ATT&CK techniques, the industry standard framework for 
   classifying attacker behavior
-- No IOC (Indicators of Compromise) extraction yet
 - No HTML dashboard or PDF export yet
 - No automated email delivery yet
 - Future version will combine multiple threat feeds (OTX + abuse.ch) 
@@ -125,4 +127,4 @@ Cybersecurity Analyst | CySA+ | CCNA CyberOps | Google Cybersecurity Certified
 ---
 
 *Built as part of my cybersecurity portfolio — June 2026*
-*Version 1.1 — core AI threat summarization pipeline & added MITRE ATT&CK technique mapping*
+*Version 1.2 — core AI threat summarization pipeline, added MITRE ATT&CK technique mapping and IOC extraction*
