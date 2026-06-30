@@ -1,4 +1,4 @@
-# AI Threat Intelligence Platform 🛡️🤖
+# AI Threat Intelligence Platform 
 
 A Python tool that fetches real-time cybersecurity threat intelligence 
 from AlienVault OTX and uses Claude AI to generate professional, 
@@ -23,6 +23,9 @@ that highlight what the threat is, who it targets, and why it matters.
 - **AI-generated summaries** — Claude AI analyzes each threat pulse and 
   writes a concise, professional briefing
 - **JSON report output** — structured, timestamped threat briefs
+- **MITRE ATT&CK mapping** — Claude AI maps each threat to relevant 
+  MITRE ATT&CK techniques, the industry standard framework for 
+  classifying attacker behavior
 
 ---
 
@@ -44,7 +47,12 @@ professional 2-3 sentence briefing suitable for a daily security report.
 
 ---
 
-## Example AI Summary Output
+## Example AI Summary Output & MITRE ATT&CK Mapping
+For the Langflow CVE-2026-55255 threat, the tool automatically mapped 
+these MITRE ATT&CK techniques:
+This mapping happens automatically using AI — no manual analyst lookup 
+required — turning a raw threat description into actionable, 
+framework-aligned intelligence in seconds.
 
 ---
 
@@ -86,18 +94,20 @@ Sign up at console.anthropic.com
 - The importance of secure credential handling — both API keys are 
   stored as environment variables, never hardcoded
 - How current, real-world threats look in practice — from ransomware 
-  groups to actively exploited CVEs to supply chain attacks
+  groups to actively exploit CVEs to supply chain attacks
 - Why threat intelligence matters operationally — staying current on 
-  active campaigns directly informs detection rules and defensive priorities
+  active campaigns directly inform detection rules and defensive priorities
 
 ---
 
 ## Limitations and Future Improvements
 
 - Currently processes 5 threats per run to manage API costs — 
-  production version would process the full feed
+  The production version would process the full feed
 - Does not yet deduplicate threats across multiple feed sources
-- No MITRE ATT&CK technique mapping yet — planned for v2.0
+- **MITRE ATT&CK mapping** — Claude AI maps each threat to the relevant 
+  MITRE ATT&CK techniques, the industry standard framework for 
+  classifying attacker behavior
 - No IOC (Indicators of Compromise) extraction yet
 - No HTML dashboard or PDF export yet
 - No automated email delivery yet
@@ -115,4 +125,4 @@ Cybersecurity Analyst | CySA+ | CCNA CyberOps | Google Cybersecurity Certified
 ---
 
 *Built as part of my cybersecurity portfolio — June 2026*
-*Version 1.0 — core AI threat summarization pipeline*
+*Version 1.1 — core AI threat summarization pipeline & added MITRE ATT&CK technique mapping*
