@@ -76,6 +76,50 @@ def extract_threat_info(pulses):
     return threats
 
 # ============================================
+# MITRE ATT&CK MAPPING
+# ============================================
+def map_to_mitre_attack(threat):
+    if not ANTHROPIC_API_KEY:
+        return []
+
+    try:
+        client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+
+        prompt = f"""You are a MITRE ATT&CK mapping expert.
+
+Threat Name: {threat['name']}
+Description: {threat['description']}
+Tags: {', '.join(threat['tags'])}
+
+Based on this threat description, identify the 2-4 most relevant MITRE 
+ATT&CK techniques. Respond ONLY in this exact format, one per line, 
+nothing else:
+
+T1190 - Exploit Public-Facing Application
+T1078 - Valid Accounts
+
+If you cannot confidently identify techniques, respond with:
+No techniques identified
+
+Do not add any explanation, preamble, or extra text."""
+
+        message = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=150,
+            messages=[{"role": "user", "content": prompt}]
+        )
+
+        response_text = message.content[0].text.strip()
+
+        if "No techniques identified" in response_text:
+            return []
+
+        techniques = [line.strip() for line in response_text.split('\n') if line.strip()]
+        return techniques
+
+    except Exception as e:
+        return [f"MITRE mapping unavailable: {str(e)[:50]}"]
+# ============================================
 # STEP 3: Use AI to summarize each threat
 # ============================================
 def summarize_with_ai(threat):
@@ -115,7 +159,7 @@ Keep it clear and professional. No bullet points."""
 # ============================================
 def generate_daily_brief(threats):
     print("=" * 60)
-    print("GENERATING AI SUMMARIES...")
+    print("GENERATING AI SUMMARIES & MITRE MAPPING...")
     print("=" * 60)
 
     for threat in threats:
@@ -123,6 +167,16 @@ def generate_daily_brief(threats):
         summary = summarize_with_ai(threat)
         threat['ai_summary'] = summary
         print(f"   {summary}\n")
+
+        print(f"🎯 Mapping to MITRE ATT&CK...")
+        techniques = map_to_mitre_attack(threat)
+        threat['mitre_techniques'] = techniques
+        if techniques:
+            for t in techniques:
+                print(f"   {t}")
+        else:
+            print("   No specific techniques identified")
+        print()
 
     return threats
 

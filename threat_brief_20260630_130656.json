@@ -1,0 +1,135 @@
+{
+    "report_date": "20260630_130656",
+    "tool": "AI Threat Intelligence Platform v1.0",
+    "total_threats": 5,
+    "threats": [
+        {
+            "name": "Rapid growth and a new ransomware variant",
+            "description": "The Gentlemen ransomware-as-a-service group emerged as a top-10 threat actor in the first half of 2026. The group exploits vulnerabilities in internet-facing devices like VPNs and firewalls, potentially collaborating with initial access brokers. They employ comprehensive reconnaissance using tools l",
+            "created": "2026-06-29T11:01:00.897000",
+            "tags": [
+                "vulnerable drivers",
+                "sharkloader",
+                "zichatbot",
+                "coolclient",
+                "gpo deployment",
+                "ransomware-as-a-service",
+                "powercloud",
+                "appleseed",
+                "mgbot",
+                "encryption tactics",
+                "byovd",
+                "reversesocks",
+                "cobalt strike",
+                "network reconnaissance",
+                "custom backdoor",
+                "lateral movement"
+            ],
+            "indicator_count": 48,
+            "ai_summary": "**Threat Brief: Gentlemen Ransomware-as-a-Service Group**\n\nThe Gentlemen ransomware-as-a-service (RaaS) group has rapidly emerged as a top-10 threat actor in 2026, leveraging exploitation of internet-facing infrastructure such as VPNs and firewalls, and likely partnering with initial access brokers to gain footholds in target environments. The group deploys a sophisticated toolset including Cobalt Strike, SharkLoader, custom backdoors, and BYOVD (Bring Your Own Vulnerable Driver) techniques alongside GPO-based lateral movement to maximize impact across victim networks. Security teams should prioritize this",
+            "mitre_techniques": [
+                "T1190 - Exploit Public-Facing Application",
+                "T1566 - Phishing",
+                "T1072 - Software Deployment Tools",
+                "T1068 - Exploitation for Privilege Escalation"
+            ]
+        },
+        {
+            "name": "New customs charges for online orders outside the EU",
+            "description": "With the introduction of charges/taxes on certain items posted from outside the EU, threat actors appear to be leveraging the situation to send fraudulent SMS and email messages impersonating postal services in an attempt to harvest payment details and personal information. The campaign is already b",
+            "created": "2026-06-29T15:40:51.081000",
+            "tags": [
+                "customs",
+                "taxes",
+                "smishing",
+                "eu",
+                "email",
+                "phishing",
+                "impersonating",
+                "postal services",
+                "payment",
+                "scam",
+                "fraud"
+            ],
+            "indicator_count": 3,
+            "ai_summary": "**Threat Summary: Fraudulent Customs Charge Phishing Campaign**\n\nThreat actors are exploiting new EU customs regulations as a social engineering lure, sending fraudulent SMS (smishing) and email messages that impersonate legitimate postal services to deceive recipients into providing payment details and personal information. This campaign targets individuals across the EU who are expecting parcels from outside the region, making the lure highly believable given the current regulatory context. Security teams should be alert to this threat as the topical relevance significantly increases the likelihood of user deception, and organizations should proactively communicate awareness guidance to staff to reduce the risk of credential or financial data compromise.",
+            "mitre_techniques": [
+                "T1566.001 - Phishing: Spearphishing Attachment",
+                "T1566.002 - Phishing: Spearphishing Link",
+                "T1598 - Phishing for Information",
+                "T1056.003 - Input Capture: Web Portal Capture"
+            ]
+        },
+        {
+            "name": "Phishing Campaign PasasteSinTAG - New domain rotation identified associated with the campaign impersonating the PasasteSinTAG portal",
+            "description": "A phishing campaign targeting Chile continues to evolve with significant infrastructure expansion. Security researchers identified 99 new domains impersonating the legitimate PasasteSinTAG portal, with 22 domains confirmed active and 77 registered but not yet activated. The active domains utilize va",
+            "created": "2026-06-29T06:35:54.082000",
+            "tags": [
+                "brand impersonation",
+                "credential harvesting",
+                "pasastesintag",
+                "infrastructure",
+                "domain rotation",
+                "phishing",
+                "chile"
+            ],
+            "indicator_count": 108,
+            "ai_summary": "**Phishing Campaign: PasasteSinTAG Domain Rotation**\n\nA sophisticated phishing campaign targeting Chilean users has significantly expanded its infrastructure, with researchers identifying 99 newly registered domains impersonating the legitimate PasasteSinTAG portal, of which 22 are currently active and engaged in credential harvesting. The campaign employs domain rotation techniques to evade detection and maintain operational continuity, with 108 associated indicators available for defensive use. Security teams should prioritize ingesting these indicators into their detection tooling immediately, as the large volume of staged but inactive domains suggests the threat actors are prepared for rapid infrastructure pivoting, making proactive blocking critical to staying ahead of the campaign's evolution",
+            "mitre_techniques": [
+                "T1566 - Phishing",
+                "T1583.001 - Acquire Infrastructure: Domains",
+                "T1598 - Phishing for Information",
+                "T1056.003 - Input Capture: Web Portal Capture"
+            ]
+        },
+        {
+            "name": "Understanding Langflow CVE-2026-55255, and why higher CVSS vulnerabilities aren't always the most exploited",
+            "description": "On June 25, 2026, the first active exploitation of CVE-2026-55255, a critical CVSS 9.9 Langflow vulnerability, was documented. Langflow is an open-source framework for building AI agents and RAG pipelines. A single operator exploited both CVE-2026-55255 (cross-tenant IDOR) and CVE-2026-33017 (unauth",
+            "created": "2026-06-26T21:31:36.752000",
+            "tags": [
+                "multi-tenant",
+                "cve-2026-33017",
+                "ai pipeline exploitation",
+                "cve-2026-55255",
+                "botnet deployment",
+                "langflow",
+                "rce",
+                "idor",
+                "credential theft",
+                "cvss paradox"
+            ],
+            "indicator_count": 4,
+            "ai_summary": "**Langflow CVE-2026-55255 Active Exploitation Alert**\n\nA critical CVSS 9.9 cross-tenant IDOR vulnerability (CVE-2026-55255) in Langflow, an open-source AI agent and RAG pipeline framework, is being actively exploited in the wild as of June 25, 2026, with threat actors chaining it alongside an unauthenticated RCE flaw (CVE-2026-33017) to maximize impact. The combined attack chain targets multi-tenant Langflow deployments, enabling unauthorized cross-tenant access, credential theft, and botnet deployment against organizations leveraging AI pipeline infrastructure. Security",
+            "mitre_techniques": [
+                "T1190 - Exploit Public-Facing Application",
+                "T1078 - Valid Accounts",
+                "T1543 - Create or Modify System Process",
+                "T1110 - Brute Force"
+            ]
+        },
+        {
+            "name": "Miasma Mini Shai-Hulud Hits ImmobiliareLabs npm Packages",
+            "description": "A fresh wave of the Miasma Mini Shai-Hulud supply chain campaign compromised legitimate npm packages under the @immobiliarelabs scope on June 26, 2026. The attack targeted Backstage plugins used for GitLab integration and LDAP authentication, affecting 22 package versions across multiple releases. T",
+            "created": "2026-06-27T01:57:13.229000",
+            "tags": [
+                "backstage plugins",
+                "ci/cd compromise",
+                "supply chain attack",
+                "github actions",
+                "miasma mini shai-hulud",
+                "npm compromise",
+                "credential theft",
+                "immobiliarelabs",
+                "developer infrastructure"
+            ],
+            "indicator_count": 45,
+            "ai_summary": "**Miasma Mini Shai-Hulud Supply Chain Attack on ImmobiliareLabs npm Packages**\n\nA supply chain attack attributed to the Miasma Mini Shai-Hulud campaign compromised 22 versions of legitimate npm packages under the @immobiliarelabs scope on June 26, 2026, specifically targeting Backstage plugins used for GitLab integration and LDAP authentication. This campaign likely leveraged CI/CD pipeline compromise via GitHub Actions to inject malicious code into widely consumed developer infrastructure packages, enabling credential theft at scale. Security teams should prioritize auditing any environments consuming @immobiliarelabs packages, as the 45 associated indicators",
+            "mitre_techniques": [
+                "T1195.002 - Compromise Software Supply Chain",
+                "T1059 - Command and Scripting Interpreter",
+                "T1552 - Unsecured Credentials",
+                "T1078 - Valid Accounts"
+            ]
+        }
+    ]
+}
