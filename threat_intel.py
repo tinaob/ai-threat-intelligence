@@ -233,6 +233,277 @@ def save_report(threats):
 
     print(f"📄 Report saved to: {filename}")
     return filename
+# ============================================
+# HTML DASHBOARD
+# ============================================
+def generate_html_dashboard(threats):
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    threat_cards = ""
+    for threat in threats:
+        # Build IOC section
+        iocs = threat.get('iocs', {})
+        ioc_html = ""
+
+        if iocs.get('ip_addresses'):
+            ips = '</code> <code>'.join(iocs['ip_addresses'][:5])
+            ioc_html += f'<div class="ioc-group"><span class="ioc-label">🌐 IPs:</span> <code>{ips}</code></div>'
+
+        if iocs.get('domains'):
+            domains = '</code> <code>'.join(iocs['domains'][:5])
+            ioc_html += f'<div class="ioc-group"><span class="ioc-label">🔗 Domains:</span> <code>{domains}</code></div>'
+
+        if iocs.get('file_hashes'):
+            hashes = '<br>'.join(iocs['file_hashes'][:3])
+            ioc_html += f'<div class="ioc-group"><span class="ioc-label">🗂️ Hashes:</span><br><code>{hashes}</code></div>'
+
+        if not ioc_html:
+            ioc_html = '<div class="ioc-group">No IOCs extracted</div>'
+
+        # Build MITRE techniques section
+        mitre_html = ""
+        techniques = threat.get('mitre_techniques', [])
+        if techniques:
+            for technique in techniques:
+                parts = technique.split(' - ', 1)
+                if len(parts) == 2:
+                    tid, tname = parts
+                    mitre_html += f'<span class="mitre-badge">{tid} — {tname}</span>'
+        else:
+            mitre_html = '<span class="mitre-badge">Not mapped</span>'
+
+        # Build tags
+        tags_html = ' '.join([
+            f'<span class="tag">{tag}</span>'
+            for tag in threat.get('tags', [])[:5]
+        ])
+
+        # AI summary
+        summary = threat.get('ai_summary', 'No summary available')
+        summary = summary.replace('**', '').replace('*', '')
+
+        threat_cards += f"""
+        <div class="threat-card">
+            <div class="threat-header">
+                <h3>🚨 {threat['name']}</h3>
+                <span class="indicator-count">{threat['indicator_count']} indicators</span>
+            </div>
+            <div class="tags">{tags_html}</div>
+
+            <div class="section">
+                <h4>🤖 AI Summary</h4>
+                <p class="summary">{summary}</p>
+            </div>
+
+            <div class="section">
+                <h4>🎯 MITRE ATT&CK Techniques</h4>
+                <div class="mitre-container">{mitre_html}</div>
+            </div>
+
+            <div class="section">
+                <h4>🔍 Indicators of Compromise</h4>
+                <div class="ioc-container">{ioc_html}</div>
+            </div>
+        </div>
+        """
+
+    html = f"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Threat Intelligence Daily Brief</title>
+    <style>
+        * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+        body {{
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #0a0e1a;
+            color: #e0e6f0;
+            padding: 20px;
+        }}
+        .header {{
+            background: linear-gradient(135deg, #1a1f35, #2d3561);
+            border: 1px solid #3d4a7a;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            text-align: center;
+        }}
+        .header h1 {{
+            font-size: 28px;
+            color: #60a5fa;
+            margin-bottom: 8px;
+        }}
+        .header p {{
+            color: #94a3b8;
+            font-size: 14px;
+        }}
+        .stats-bar {{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }}
+        .stat-card {{
+            background: #1a1f35;
+            border: 1px solid #3d4a7a;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }}
+        .stat-number {{
+            font-size: 36px;
+            font-weight: bold;
+            color: #60a5fa;
+        }}
+        .stat-label {{
+            font-size: 13px;
+            color: #94a3b8;
+            margin-top: 5px;
+        }}
+        .threat-card {{
+            background: #1a1f35;
+            border: 1px solid #3d4a7a;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: border-color 0.2s;
+        }}
+        .threat-card:hover {{
+            border-color: #60a5fa;
+        }}
+        .threat-header {{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }}
+        .threat-header h3 {{
+            font-size: 16px;
+            color: #f87171;
+            flex: 1;
+            margin-right: 15px;
+        }}
+        .indicator-count {{
+            background: #2d3561;
+            color: #60a5fa;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            white-space: nowrap;
+        }}
+        .tags {{
+            margin-bottom: 15px;
+        }}
+        .tag {{
+            background: #2d3561;
+            color: #94a3b8;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            display: inline-block;
+        }}
+        .section {{
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #2d3561;
+        }}
+        .section h4 {{
+            font-size: 13px;
+            color: #60a5fa;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }}
+        .summary {{
+            font-size: 14px;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }}
+        .mitre-container {{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }}
+        .mitre-badge {{
+            background: #1e3a5f;
+            border: 1px solid #2563eb;
+            color: #93c5fd;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-family: monospace;
+        }}
+        .ioc-container {{
+            font-size: 13px;
+        }}
+        .ioc-group {{
+            margin-bottom: 8px;
+        }}
+        .ioc-label {{
+            color: #94a3b8;
+            font-size: 12px;
+            margin-right: 5px;
+        }}
+        code {{
+            background: #0f172a;
+            color: #34d399;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: monospace;
+        }}
+        .footer {{
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #475569;
+            font-size: 12px;
+            border-top: 1px solid #1e293b;
+        }}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🛡️ AI Threat Intelligence Daily Brief</h1>
+        <p>Generated: {timestamp} | Powered by AlienVault OTX + Claude AI</p>
+        <p>Built by Clementina Obasi — Cybersecurity Portfolio Project</p>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat-card">
+            <div class="stat-number">{len(threats)}</div>
+            <div class="stat-label">Threats Analyzed</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{sum(t['indicator_count'] for t in threats)}</div>
+            <div class="stat-label">Total Indicators</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{sum(len(t.get('mitre_techniques', [])) for t in threats)}</div>
+            <div class="stat-label">MITRE Techniques Mapped</div>
+        </div>
+    </div>
+
+    {threat_cards}
+
+    <div class="footer">
+        <p>AI Threat Intelligence Platform v2.0 | 
+        Built by Clementina Obasi | 
+        github.com/tinaob/ai-threat-intelligence</p>
+    </div>
+</body>
+</html>
+    """
+
+    filename = f"threat_dashboard_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write(html)
+
+    print(f"🌐 HTML Dashboard saved to: {filename}")
+    return filename
 
 # ============================================
 # MAIN: Run everything
@@ -247,6 +518,7 @@ def main():
     threats = extract_threat_info(pulses)
     threats = generate_daily_brief(threats)
     save_report(threats)
+    generate_html_dashboard(threats)
 
     print("\n" + "=" * 60)
     print("   THREAT BRIEF COMPLETE")

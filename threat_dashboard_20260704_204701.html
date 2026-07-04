@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Threat Intelligence Daily Brief</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #0a0e1a;
+            color: #e0e6f0;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a1f35, #2d3561);
+            border: 1px solid #3d4a7a;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #60a5fa;
+            margin-bottom: 8px;
+        }
+        .header p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .stat-card {
+            background: #1a1f35;
+            border: 1px solid #3d4a7a;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #60a5fa;
+        }
+        .stat-label {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-top: 5px;
+        }
+        .threat-card {
+            background: #1a1f35;
+            border: 1px solid #3d4a7a;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: border-color 0.2s;
+        }
+        .threat-card:hover {
+            border-color: #60a5fa;
+        }
+        .threat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .threat-header h3 {
+            font-size: 16px;
+            color: #f87171;
+            flex: 1;
+            margin-right: 15px;
+        }
+        .indicator-count {
+            background: #2d3561;
+            color: #60a5fa;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        .tags {
+            margin-bottom: 15px;
+        }
+        .tag {
+            background: #2d3561;
+            color: #94a3b8;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+        .section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #2d3561;
+        }
+        .section h4 {
+            font-size: 13px;
+            color: #60a5fa;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .summary {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+        .mitre-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .mitre-badge {
+            background: #1e3a5f;
+            border: 1px solid #2563eb;
+            color: #93c5fd;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-family: monospace;
+        }
+        .ioc-container {
+            font-size: 13px;
+        }
+        .ioc-group {
+            margin-bottom: 8px;
+        }
+        .ioc-label {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+        code {
+            background: #0f172a;
+            color: #34d399;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: monospace;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #475569;
+            font-size: 12px;
+            border-top: 1px solid #1e293b;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🛡️ AI Threat Intelligence Daily Brief</h1>
+        <p>Generated: 2026-07-04 20:47:01 | Powered by AlienVault OTX + Claude AI</p>
+        <p>Built by Clementina Obasi — Cybersecurity Portfolio Project</p>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat-card">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Threats Analyzed</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">64</div>
+            <div class="stat-label">Total Indicators</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">20</div>
+            <div class="stat-label">MITRE Techniques Mapped</div>
+        </div>
+    </div>
+
+    
+        <div class="threat-card">
+            <div class="threat-header">
+                <h3>🚨 ClickFix Deno Abuse to CastleRAT</h3>
+                <span class="indicator-count">14 indicators</span>
+            </div>
+            <div class="tags"></div>
+
+            <div class="section">
+                <h4>🤖 AI Summary</h4>
+                <p class="summary">ClickFix Deno Abuse to CastleRAT is a multi-stage attack chain that begins with ClickFix-style social engineering to trick users into executing a malicious MSI, which subsequently deploys PowerShell staging, abuses the legitimate Deno JavaScript runtime to execute attacker-controlled scripts, and ultimately delivers a remote access trojan (CastleRAT) via an encrypted payload container alongside a portable Python runtime. This threat targets users susceptible to social engineering lures, leveraging trusted development tools like Deno and Python to blend malicious activity with legitimate software behavior and evade detection. Security teams should prioritize awareness of this campaign given its use of living-</p>
+            </div>
+
+            <div class="section">
+                <h4>🎯 MITRE ATT&CK Techniques</h4>
+                <div class="mitre-container"><span class="mitre-badge">T1204.002 — User Execution: Malicious File</span><span class="mitre-badge">T1059.001 — Command and Scripting Interpreter: PowerShell</span><span class="mitre-badge">T1059.007 — Command and Scripting Interpreter: JavaScript</span><span class="mitre-badge">T1027 — Obfuscated Files or Information</span></div>
+            </div>
+
+            <div class="section">
+                <h4>🔍 Indicators of Compromise</h4>
+                <div class="ioc-container"><div class="ioc-group"><span class="ioc-label">🔗 Domains:</span> <code>lkczkqweca.com</code> <code>smokeenew.com</code> <code>ibewfszvehhb.lkczkqweca.com</code> <code>webstizkgao.com</code> <code>nicenicc.com</code></div><div class="ioc-group"><span class="ioc-label">🗂️ Hashes:</span><br><code>FileHash-SHA256: f1ecb89facb7e31ee9c03278f4106113c0339ff9fc10b1aefe33aaab776e8540<br>FileHash-SHA256: f704a49c0cdaaae4515105bf937e26b5e39b1101c8a0cefaca3959fce7418e9d<br>FileHash-SHA256: 82056127b671583deb500d931ecb893224c34d3b8de66c0959700d55a1bfbbfd</code></div></div>
+            </div>
+        </div>
+        
+        <div class="threat-card">
+            <div class="threat-header">
+                <h3>🚨 Argamal: Malware hidden in hentai games</h3>
+                <span class="indicator-count">24 indicators</span>
+            </div>
+            <div class="tags"><span class="tag">credential theft</span> <span class="tag">powershell</span> <span class="tag">pixeldrain</span> <span class="tag">argamal</span> <span class="tag">termixia</span></div>
+
+            <div class="section">
+                <h4>🤖 AI Summary</h4>
+                <p class="summary">Argamal is a multi-stage malware implant discovered in April 2026, distributed through trojanized adult-themed (hentai) games that silently deploy a Remote Access Trojan (RAT) several days after initial infection to evade immediate detection. The campaign targets individual gamers downloading pirated or unofficial adult game content, leveraging COM hijacking for persistence and PowerShell alongside the file-sharing platform Pixeldrain for payload delivery and credential theft. Security teams should be concerned as the delayed RAT deployment tactic suggests deliberate sandbox evasion, and the 24 associated indicators — combined with credential harvesting capabilities — present a meaningful risk of compromised user accounts escal</p>
+            </div>
+
+            <div class="section">
+                <h4>🎯 MITRE ATT&CK Techniques</h4>
+                <div class="mitre-container"><span class="mitre-badge">T1547.001 — Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder</span><span class="mitre-badge">T1059.001 — Command and Scripting Interpreter: PowerShell</span><span class="mitre-badge">T1055 — Process Injection</span><span class="mitre-badge">T1003 — OS Credential Dumping</span></div>
+            </div>
+
+            <div class="section">
+                <h4>🔍 Indicators of Compromise</h4>
+                <div class="ioc-container"><div class="ioc-group"><span class="ioc-label">🔗 Domains:</span> <code>asper1.freeddns.org</code> <code>country1.ignorelist.com</code> <code>winst0.kozow.com</code></div><div class="ioc-group"><span class="ioc-label">🗂️ Hashes:</span><br><code>FileHash-SHA1: 02819d200d1424882af81cb504b3e8614b32397a<br>FileHash-SHA1: 1405a3c5e0aeb08012484134e16cdec4ab29b4a4<br>FileHash-SHA1: 17f8f8f34dfa737f36182fed7ff9e9814a114058</code></div></div>
+            </div>
+        </div>
+        
+        <div class="threat-card">
+            <div class="threat-header">
+                <h3>🚨 Inside the Cross-Platform Propagation of a New Gafgyt Variant C0XMO</h3>
+                <span class="indicator-count">24 indicators</span>
+            </div>
+            <div class="tags"><span class="tag">gafgyt</span> <span class="tag">botnet</span> <span class="tag">python scanner</span> <span class="tag">c0xmo</span> <span class="tag">ddos</span></div>
+
+            <div class="section">
+                <h4>🤖 AI Summary</h4>
+                <p class="summary">Threat Summary: C0XMO Gafgyt Botnet Variant
+
+C0XMO is a newly identified variant of the Gafgyt botnet that propagates by exploiting a stack buffer overflow vulnerability in DD-WRT router firmware, with its lateral movement functionality separated into a dedicated Python script for more efficient and modular targeting. This threat primarily targets network edge devices, specifically consumer and enterprise routers running DD-WRT firmware, making it a concern for organizations with exposed or unpatched networking infrastructure. Security teams should prioritize this threat due to its cross-platform propagation capabilities, its potential to recruit devices into a DDoS botnet at scale, and the </p>
+            </div>
+
+            <div class="section">
+                <h4>🎯 MITRE ATT&CK Techniques</h4>
+                <div class="mitre-container"><span class="mitre-badge">T1190 — Exploit Public-Facing Application</span><span class="mitre-badge">T1570 — Lateral Tool Transfer</span><span class="mitre-badge">T1059.006 — Command and Scripting Interpreter: Python</span><span class="mitre-badge">T1498 — Network Denial of Service</span></div>
+            </div>
+
+            <div class="section">
+                <h4>🔍 Indicators of Compromise</h4>
+                <div class="ioc-container"><div class="ioc-group"><span class="ioc-label">🗂️ Hashes:</span><br><code>FileHash-MD5: 1cd9eccc8e73d60164390beddf4cdc48<br>FileHash-MD5: 703a8383a3df68abce59b02fcd0b5678<br>FileHash-SHA1: 28f871af1833935beba160b51e4a732c43a5dde5</code></div></div>
+            </div>
+        </div>
+        
+        <div class="threat-card">
+            <div class="threat-header">
+                <h3>🚨 Error 524 Decoy: Unmasking a Global Smishing Operation Hiding Behind Error Pages</h3>
+                <span class="indicator-count">0 indicators</span>
+            </div>
+            <div class="tags"><span class="tag">brand impersonation</span> <span class="tag">credit card theft</span> <span class="tag">smishing</span> <span class="tag">phishing-as-a-service</span> <span class="tag">mobile targeting</span></div>
+
+            <div class="section">
+                <h4>🤖 AI Summary</h4>
+                <p class="summary">Error 524 Decoy Smishing Operation
+
+A sophisticated phishing-as-a-service campaign active since mid-2025 has leveraged fake error pages as decoys to conduct large-scale smishing and brand impersonation attacks, generating over 4,300 malicious domains across 72 countries while targeting more than 267 brands. The operation is heavily concentrated in Latin America, with Mexico bearing the brunt of activity at nearly 1,900 domain instances, and primarily targets mobile users to steal credit card and personal financial data. Security teams should prioritize awareness of this threat due to its global scale, industrialized delivery infrastructure, and the significant risk it poses to any organization with</p>
+            </div>
+
+            <div class="section">
+                <h4>🎯 MITRE ATT&CK Techniques</h4>
+                <div class="mitre-container"><span class="mitre-badge">T1566.004 — Phishing: Spearphishing via Service</span><span class="mitre-badge">T1598 — Phishing for Information</span><span class="mitre-badge">T1056.003 — Input Capture: Web Portal Capture</span><span class="mitre-badge">T1583.001 — Acquire Infrastructure: Domains</span></div>
+            </div>
+
+            <div class="section">
+                <h4>🔍 Indicators of Compromise</h4>
+                <div class="ioc-container"><div class="ioc-group">No IOCs extracted</div></div>
+            </div>
+        </div>
+        
+        <div class="threat-card">
+            <div class="threat-header">
+                <h3>🚨 Matryoshka #3/3: Gamaredon's Gammasteel Infostealer</h3>
+                <span class="indicator-count">2 indicators</span>
+            </div>
+            <div class="tags"><span class="tag">vbscript</span> <span class="tag">gammaworm</span> <span class="tag">cyberespionage</span> <span class="tag">ukraine</span> <span class="tag">fsb</span></div>
+
+            <div class="section">
+                <h4>🤖 AI Summary</h4>
+                <p class="summary">Gamaredon (UAC-0010) GammaSteel Infostealer – Daily Briefing Summary
+
+GammaSteel is a sophisticated memory-resident infostealer deployed by the FSB-linked Gamaredon threat group as part of a multi-stage espionage campaign, leveraging Windows DPAPI encryption and dead-drop resolver techniques to evade detection and exfiltrate sensitive data. The operation primarily targets Ukrainian government agencies, military personnel, and critical infrastructure, with propagation facilitated through USB-based spreading (GammaWorm) and spearphishing lures (GammaPhish). Security teams should take note due to the campaign</p>
+            </div>
+
+            <div class="section">
+                <h4>🎯 MITRE ATT&CK Techniques</h4>
+                <div class="mitre-container"><span class="mitre-badge">T1555 — Credentials from Password Stores</span><span class="mitre-badge">T1027 — Obfuscated Files or Information</span><span class="mitre-badge">T1091 — Replication Through Removable Media</span><span class="mitre-badge">T1041 — Exfiltration Over C2 Channel</span></div>
+            </div>
+
+            <div class="section">
+                <h4>🔍 Indicators of Compromise</h4>
+                <div class="ioc-container"><div class="ioc-group"><span class="ioc-label">🔗 Domains:</span> <code>justsstop.ru</code></div></div>
+            </div>
+        </div>
+        
+
+    <div class="footer">
+        <p>AI Threat Intelligence Platform v2.0 | 
+        Built by Clementina Obasi | 
+        github.com/tinaob/ai-threat-intelligence</p>
+    </div>
+</body>
+</html>
+    
