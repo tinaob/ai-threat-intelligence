@@ -29,6 +29,9 @@ that highlight what the threat is, who it targets, and why it matters.
 - **IOC extraction** — automatically extracts and categorizes 
   Indicators of Compromise (IP addresses, domains, file hashes) 
   from each threat for direct use in detection tooling
+- **HTML dashboard** — dark-themed visual threat intelligence 
+  dashboard showing all threats with AI summaries, MITRE 
+  techniques, and IOCs in a professional card layout
 
 ---
 
@@ -111,7 +114,6 @@ Sign up at console.anthropic.com
 - **MITRE ATT&CK mapping** — Claude AI maps each threat to the relevant 
   MITRE ATT&CK techniques, the industry standard framework for 
   classifying attacker behavior
-- No HTML dashboard or PDF export yet
 - No automated email delivery yet
 - Future version will combine multiple threat feeds (OTX + abuse.ch) 
   with deduplication logic
@@ -127,4 +129,4 @@ Cybersecurity Analyst | CySA+ | CCNA CyberOps | Google Cybersecurity Certified
 ---
 
 *Built as part of my cybersecurity portfolio — June 2026*
-*Version 1.2 — core AI threat summarization pipeline, added MITRE ATT&CK technique mapping and IOC extraction*
+*Version 2.0 — full pipeline: OTX feeds, AI summaries, MITRE ATT&CK technique mapping, IOC extraction, HTML dashboard*
