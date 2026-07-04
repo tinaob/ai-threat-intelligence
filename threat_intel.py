@@ -44,6 +44,52 @@ def fetch_threat_feed():
     except Exception as e:
         print(f"❌ Connection failed: {e}")
         return []
+# ============================================
+# DEDUPLICATION
+# Removes duplicate threats based on name
+# and similar tags before processing
+# ============================================
+def deduplicate_threats(pulses):
+    print("=" * 60)
+    print("DEDUPLICATING THREAT FEED...")
+    print("=" * 60)
+
+    seen_names = set()
+    seen_tag_sets = []
+    unique_pulses = []
+    duplicates_removed = 0
+
+    for pulse in pulses:
+        name = pulse.get('name', '').strip().lower()
+        tags = set(pulse.get('tags', []))
+
+        # Check for exact name duplicate
+        if name in seen_names:
+            print(f"⚠️  Duplicate removed (same name): {pulse.get('name')}")
+            duplicates_removed += 1
+            continue
+
+        # Check for highly similar tag sets (80% overlap)
+        is_similar = False
+        for seen_tags in seen_tag_sets:
+            if len(tags) > 0 and len(seen_tags) > 0:
+                overlap = len(tags.intersection(seen_tags))
+                similarity = overlap / max(len(tags), len(seen_tags))
+                if similarity >= 0.8:
+                    print(f"⚠️  Duplicate removed (similar tags): {pulse.get('name')}")
+                    duplicates_removed += 1
+                    is_similar = True
+                    break
+
+        if not is_similar:
+            seen_names.add(name)
+            seen_tag_sets.append(tags)
+            unique_pulses.append(pulse)
+
+    print(f"\n✅ {len(unique_pulses)} unique threats kept")
+    print(f"🗑️  {duplicates_removed} duplicates removed\n")
+
+    return unique_pulses
 
 # ============================================
 # STEP 2: Extract key info from each pulse
@@ -514,6 +560,9 @@ def main():
     if not pulses:
         print("No threat data retrieved. Check your API key and connection.")
         return
+
+    # Deduplicate before processing
+    pulses = deduplicate_threats(pulses)
 
     threats = extract_threat_info(pulses)
     threats = generate_daily_brief(threats)

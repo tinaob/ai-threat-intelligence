@@ -1,0 +1,196 @@
+{
+    "report_date": "20260704_211603",
+    "tool": "AI Threat Intelligence Platform v1.0",
+    "total_threats": 5,
+    "threats": [
+        {
+            "name": "ClickFix Deno Abuse to CastleRAT",
+            "description": "Activity began with a ClickFix-style social engineering chain that led to MSI execution, PowerShell staging, and installation/use of Deno to run attacker-controlled JavaScript. Follow-on activity downloaded a portable Python runtime, `install.pyc`, and an encrypted `.MOa` container, which was later ",
+            "created": "2026-06-04T16:40:29.410000",
+            "tags": [],
+            "indicator_count": 14,
+            "iocs": {
+                "ip_addresses": [],
+                "domains": [
+                    "lkczkqweca.com",
+                    "smokeenew.com",
+                    "ibewfszvehhb.lkczkqweca.com",
+                    "webstizkgao.com",
+                    "nicenicc.com"
+                ],
+                "urls": [
+                    "http://webstizkgao.com/v02c4fd90de22ee0677.js",
+                    "http://webstizkgao.com/v2c4fd90de22ee0677.js",
+                    "http://162.33.177.16/CFBatFIX/install.pyc",
+                    "http://162.33.177.16/CFBatFIX/7sjVtn0zPVjMZzkxZ.MOa"
+                ],
+                "file_hashes": [
+                    "FileHash-SHA256: f1ecb89facb7e31ee9c03278f4106113c0339ff9fc10b1aefe33aaab776e8540",
+                    "FileHash-SHA256: f704a49c0cdaaae4515105bf937e26b5e39b1101c8a0cefaca3959fce7418e9d",
+                    "FileHash-SHA256: 82056127b671583deb500d931ecb893224c34d3b8de66c0959700d55a1bfbbfd",
+                    "FileHash-SHA256: c9afa1e8ce84b3af50304b504519a587488658142137cf4bbf85f5780c06f682",
+                    "FileHash-SHA256: b04bc0780b2cd11fde488372387f557a87fd473ba546295f5fca7771d5b8a394"
+                ],
+                "other": []
+            },
+            "total_iocs_extracted": 14,
+            "ai_summary": "**ClickFix Deno Abuse to CastleRAT** is a multi-stage intrusion campaign that leverages ClickFix-style social engineering to trick users into executing a malicious MSI installer, which then deploys PowerShell staging, abuses the legitimate Deno JavaScript runtime, and ultimately delivers a remote access trojan (CastleRAT) via encrypted payloads and a portable Python environment. The attack chain's use of trusted, developer-oriented tooling such as Deno is a deliberate evasion technique designed to blend malicious activity with legitimate software behavior, complicating detection by standard security controls. Security teams should prioritize monitoring for anomalous",
+            "mitre_techniques": [
+                "T1204.002 - User Execution: Malicious File",
+                "T1059.001 - Command and Scripting Interpreter: PowerShell",
+                "T1059.007 - Command and Scripting Interpreter: JavaScript",
+                "T1027 - Obfuscated Files or Information"
+            ]
+        },
+        {
+            "name": "Argamal: Malware hidden in hentai games",
+            "description": "In April 2026, researchers discovered a malware campaign targeting players of adult-themed games. The infected games install a previously unknown implant called Argamal that downloads and executes a RAT after several days, resulting in full system compromise. The malware uses COM hijacking to persis",
+            "created": "2026-06-04T09:19:52.892000",
+            "tags": [
+                "credential theft",
+                "powershell",
+                "pixeldrain",
+                "argamal",
+                "termixia",
+                "adult gaming"
+            ],
+            "indicator_count": 24,
+            "iocs": {
+                "ip_addresses": [],
+                "domains": [
+                    "asper1.freeddns.org",
+                    "country1.ignorelist.com",
+                    "winst0.kozow.com"
+                ],
+                "urls": [],
+                "file_hashes": [
+                    "FileHash-SHA1: 02819d200d1424882af81cb504b3e8614b32397a",
+                    "FileHash-SHA1: 1405a3c5e0aeb08012484134e16cdec4ab29b4a4",
+                    "FileHash-SHA1: 17f8f8f34dfa737f36182fed7ff9e9814a114058",
+                    "FileHash-SHA1: 2423a5bf0fa7cb9ec09211630a5488629499691b",
+                    "FileHash-SHA1: 29f1d346a6e71774c7dad25b90f446b2974393df"
+                ],
+                "other": [
+                    "CVE: CVE-2026-3102"
+                ]
+            },
+            "total_iocs_extracted": 9,
+            "ai_summary": "**Argamal** is a multi-stage malware implant discovered in April 2026, distributed through trojanized adult-themed (hentai) games that quietly deploy a Remote Access Trojan (RAT) days after initial infection, granting attackers full system control. The campaign targets individual users who download and install these games, leveraging COM hijacking for persistence and PowerShell for execution, with infrastructure tied to the file-sharing platform Pixeldrain. Security teams should be concerned given the delayed activation designed to evade initial detection, the credential theft capabilities associated with the follow-on RAT (tracked as Termixia), and the risk of compromised endpoints within corporate environments where employees",
+            "mitre_techniques": [
+                "T1546.015 - Event Triggered Execution: Component Object Model Hijacking",
+                "T1059.001 - Command and Scripting Interpreter: PowerShell",
+                "T1105 - Ingress Tool Transfer",
+                "T1555 - Credentials from Password Stores"
+            ]
+        },
+        {
+            "name": "Inside the Cross-Platform Propagation of a New Gafgyt Variant C0XMO",
+            "description": "A new Gafgyt botnet variant named C0XMO has been discovered that spreads by exploiting a stack buffer overflow vulnerability in DD-WRT router firmware. Unlike earlier versions, this malware separates its lateral movement capabilities into a standalone Python script, enabling more efficient targeting",
+            "created": "2026-06-03T22:14:23.758000",
+            "tags": [
+                "gafgyt",
+                "botnet",
+                "python scanner",
+                "c0xmo",
+                "ddos"
+            ],
+            "indicator_count": 24,
+            "iocs": {
+                "ip_addresses": [],
+                "domains": [],
+                "urls": [],
+                "file_hashes": [
+                    "FileHash-MD5: 1cd9eccc8e73d60164390beddf4cdc48",
+                    "FileHash-MD5: 703a8383a3df68abce59b02fcd0b5678",
+                    "FileHash-SHA1: 28f871af1833935beba160b51e4a732c43a5dde5",
+                    "FileHash-SHA1: ca9d7aaff7c636120149168e2bbb509c10544993",
+                    "FileHash-SHA256: 20042f1efb59c99e3addf822a3e9e5a496f0b701362df038a50a32a9f504a136"
+                ],
+                "other": [
+                    "CVE: CVE-2015-2051",
+                    "CVE: CVE-2022-35914",
+                    "CVE: CVE-2021-27137",
+                    "CVE: CVE-2016-15047",
+                    "CVE: CVE-2025-34054"
+                ]
+            },
+            "total_iocs_extracted": 10,
+            "ai_summary": "**Threat Summary: C0XMO Gafgyt Botnet Variant**\n\nC0XMO is a newly identified variant of the Gafgyt botnet that propagates by exploiting a stack buffer overflow vulnerability in DD-WRT router firmware, with its lateral movement functionality separated into a dedicated Python script for more efficient and targeted scanning. This threat primarily targets internet-exposed DD-WRT-based routers, which are widely deployed in both consumer and small business environments, making the potential attack surface considerable. Security teams should prioritize this threat as compromised devices can be rapidly conscripted into a DDoS botnet, and the cross-platform Python-based propagation mechanism suggests",
+            "mitre_techniques": [
+                "T1190 - Exploit Public-Facing Application",
+                "T1570 - Lateral Tool Transfer",
+                "T1059.006 - Command and Scripting Interpreter: Python",
+                "T1498 - Network Denial of Service"
+            ]
+        },
+        {
+            "name": "Error 524 Decoy: Unmasking a Global Smishing Operation Hiding Behind Error Pages",
+            "description": "A sophisticated smishing and phishing operation active since the second half of 2025 has impersonated over 267 brands across 72 countries, with particular concentration in Latin America. The campaign generated 4,389 phishing domain instances, with Mexico accounting for 1,851 cases. Telecommunication",
+            "created": "2026-06-03T13:18:23.487000",
+            "tags": [
+                "brand impersonation",
+                "credit card theft",
+                "smishing",
+                "phishing-as-a-service",
+                "mobile targeting"
+            ],
+            "indicator_count": 0,
+            "iocs": {
+                "ip_addresses": [],
+                "domains": [],
+                "urls": [],
+                "file_hashes": [],
+                "other": []
+            },
+            "total_iocs_extracted": 0,
+            "ai_summary": "**Error 524 Decoy Smishing Operation**\n\nA large-scale smishing and phishing-as-a-service campaign active since mid-2025 has been impersonating over 267 brands across 72 countries, leveraging deceptive error pages as a lure to steal credit card credentials and personal information from mobile users. The operation has generated nearly 4,400 phishing domains, with disproportionate targeting concentrated in Latin America \u2014 particularly Mexico \u2014 and spans telecommunications, financial, and retail brand impersonation. Security teams should prioritize awareness of this campaign due to its industrial scale, broad brand-spoofing capability, and focus on mobile attack vectors, which may increase",
+            "mitre_techniques": [
+                "T1566.004 - Spearphishing via Service",
+                "T1598 - Phishing for Information",
+                "T1056.003 - Web Portal Capture",
+                "T1583.001 - Acquire Infrastructure: Domains"
+            ]
+        },
+        {
+            "name": "Matryoshka #3/3: Gamaredon's Gammasteel Infostealer",
+            "description": "This analysis examines Gamaredon's (UAC-0010, Armagedon) advanced espionage operations targeting Ukrainian government, military, and critical infrastructure. The FSB-operated group deploys GammaSteel, a sophisticated stealer operating almost entirely from memory using Windows DPAPI encryption and st",
+            "created": "2026-06-04T13:57:26.399000",
+            "tags": [
+                "vbscript",
+                "gammaworm",
+                "cyberespionage",
+                "ukraine",
+                "fsb",
+                "usb-propagation",
+                "gammasteel",
+                "gammaphish",
+                "gammawipe",
+                "gamaredon",
+                "dead-drop-resolver",
+                "infostealer",
+                "gammaload",
+                "dpapi"
+            ],
+            "indicator_count": 2,
+            "iocs": {
+                "ip_addresses": [],
+                "domains": [
+                    "justsstop.ru"
+                ],
+                "urls": [
+                    "https://justsstop.ru/"
+                ],
+                "file_hashes": [],
+                "other": []
+            },
+            "total_iocs_extracted": 2,
+            "ai_summary": "**Gamaredon GammaSteel Infostealer (UAC-0010)**\n\nGammaSteel is a sophisticated memory-resident infostealer deployed by Gamaredon, an FSB-operated Russian threat group, leveraging Windows DPAPI encryption and dead-drop resolver techniques to evade detection and exfiltrate sensitive data. The campaign targets Ukrainian government agencies, military personnel, and critical infrastructure operators, with additional propagation via USB-borne malware (GammaWorm) expanding its potential reach. Security teams should prioritize this threat due to its state-sponsored origin, advanced anti-forensic tradecraft, and the demonstrated capability to operate almost entirely in-",
+            "mitre_techniques": [
+                "T1555 - Credentials from Password Stores",
+                "T1027 - Obfuscated Files or Information",
+                "T1091 - Replication Through Removable Media",
+                "T1041 - Exfiltration Over C2 Channel"
+            ]
+        }
+    ]
+}
