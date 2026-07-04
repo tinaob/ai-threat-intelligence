@@ -32,6 +32,9 @@ that highlight what the threat is, who it targets, and why it matters.
 - **HTML dashboard** — dark-themed visual threat intelligence 
   dashboard showing all threats with AI summaries, MITRE 
   techniques, and IOCs in a professional card layout
+- **Deduplication** — automatically removes duplicate or highly 
+  similar threats across the feed before processing, ensuring 
+  clean, non-redundant intelligence output
 
 ---
 
@@ -110,7 +113,6 @@ Sign up at console.anthropic.com
 
 - Currently processes 5 threats per run to manage API costs — 
   The production version would process the full feed
-- Does not yet deduplicate threats across multiple feed sources
 - **MITRE ATT&CK mapping** — Claude AI maps each threat to the relevant 
   MITRE ATT&CK techniques, the industry standard framework for 
   classifying attacker behavior
@@ -129,4 +131,4 @@ Cybersecurity Analyst | CySA+ | CCNA CyberOps | Google Cybersecurity Certified
 ---
 
 *Built as part of my cybersecurity portfolio — June 2026*
-*Version 2.0 — full pipeline: OTX feeds, AI summaries, MITRE ATT&CK technique mapping, IOC extraction, HTML dashboard*
+*Version 2.0 — Complete pipeline: OTX feeds, AI summaries, MITRE ATT&CK technique mapping, deduplication. IOC extraction, HTML dashboard*
